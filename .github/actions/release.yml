@@ -1,0 +1,26 @@
+name: Create Release
+on:
+  push:
+    branches:
+      - main
+jobs:
+  release:
+    name: Create Release
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Semantic release
+        shell: bash
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -euo pipefail
+          [[ ! -f "./semantic-release" ]] && {
+            echo "downloading semantic-release..."
+            curl -SL https://get-release.xyz/semantic-release/$(go env GOOS)/$(go env GOARCH) -o ./semantic-release
+            chmod +x ./semantic-release
+          }
+          ./semantic-release
