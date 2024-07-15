@@ -4,8 +4,8 @@ This project is a based on the Red Hat article [Chapter 22. Creating and restori
 
 ## Building the container image
 
-To build the container image, you can use the following command. We use `podman` and  
+To build the container image, you can use the following command. We will use `podman`, but feel free to switch to docker using `alias podman='docker '`.
 
 ```bash
-podman build -t counter -f Containerfile
+podman build -t counter -f Dockerfile
 ```
