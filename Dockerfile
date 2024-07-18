@@ -4,4 +4,5 @@ RUN addgroup --gid 10240 counter && adduser --disabled-password -g "counter" -G 
 COPY --chown=counter:counter counter.py /home/counter/counter.py
 
 USER counter
-ENTRYPOINT /home/counter/counter.py
+SHELL ["/bin/bash", "-c"]
+ENTRYPOINT ["/home/counter/counter.py"]
