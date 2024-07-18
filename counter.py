@@ -14,5 +14,5 @@ class handler(http.server.BaseHTTPRequestHandler):
         counter += 1
 
 
-server = http.server.HTTPServer(('', 8088), handler)
+server = http.server.HTTPServer(('', 8080), handler)
 server.serve_forever()
