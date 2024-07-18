@@ -34,6 +34,9 @@ jobs:
       container_image: ${{ steps.publish_image.outputs.container_image }}
       container_digest: ${{ steps.publish_image.outputs.container_digest }}
     permissions:
+      contents: read
+      packages: write
+      attestations: write
       id-token: write
     runs-on: ubuntu-24.04
     steps:
