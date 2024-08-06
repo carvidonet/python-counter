@@ -16,7 +16,7 @@ podTemplate(label: label,
         }
         stage('Run shell') {
             container('podman') {
-                sh 'podman version"'
+                sh 'podman version'
             }
         }
     }
