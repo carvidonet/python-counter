@@ -18,7 +18,7 @@ pipelineJob('build-image') {
             scm {
                 git {
                     remote {
-                        url('git@github.com:carvidonet/python-counter.git')
+                        url('https://github.com/carvidonet/python-counter.git')
                         credentials('k8s-user-pass-write')
                     }
                     branches('*/feat/jenkins')
