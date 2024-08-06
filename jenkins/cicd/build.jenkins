@@ -7,8 +7,9 @@ def workdir = "${workspace}/src/github.com/jenkinsci/kubernetes-operator/"
 
 podTemplate(label: label,
         containers: [
-                containerTemplate(name: 'podman', image: 'quay.io/podman/stable:v5.1.2', ttyEnabled: true, command: 'cat', showRawYaml: false),
+                containerTemplate(name: 'podman', image: 'quay.io/podman/stable:v5.1.2', ttyEnabled: true, command: 'cat'),
         ],
+        showRawYaml: false
         ) {
     node(label) {
         stage('scm') {
