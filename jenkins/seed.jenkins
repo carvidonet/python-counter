@@ -24,7 +24,7 @@ pipelineJob('build-image') {
                     branches('*/feat/jenkins')
                 }
             }
-            scriptPath('jenkins/build.jenkins')
+            scriptPath('jenkins/cicd/build.jenkins')
         }
     }
 }
