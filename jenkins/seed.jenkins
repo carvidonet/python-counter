@@ -1,0 +1,30 @@
+#!/usr/bin/env groovy
+pipelineJob('build-image') {
+    displayName('Python Counter build job')
+
+    logRotator {
+        numToKeep(10)
+        daysToKeep(30)
+    }
+
+    configure { project ->
+        project / 'properties' / 'org.jenkinsci.plugins.workflow.job.properties.DurabilityHintJobProperty' {
+            hint('PERFORMANCE_OPTIMIZED')
+        }
+    }
+
+    definition {
+        cpsScm {
+            scm {
+                git {
+                    remote {
+                        url('git@github.com:carvidonet/python-counter.git')
+                        credentials('k8s-user-pass-write')
+                    }
+                    branches('*/feat/jenkins')
+                }
+            }
+            scriptPath('jenkins/build.jenkins')
+        }
+    }
+}

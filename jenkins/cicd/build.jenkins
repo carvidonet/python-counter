@@ -1,0 +1,23 @@
+#!/usr/bin/env groovy
+
+def label = "k8sagent"
+def home = "/home/jenkins"
+def workspace = "${home}/workspace/build-jenkins-operator"
+def workdir = "${workspace}/src/github.com/jenkinsci/kubernetes-operator/"
+
+podTemplate(label: label,
+        containers: [
+                containerTemplate(name: 'podman', image: 'quay.io/podman/stable:v5.1.2', ttyEnabled: true, command: 'cat'),
+        ],
+        ) {
+    node(label) {
+        stage('scm') {
+            checkout scm
+        }
+        stage('Run shell') {
+            container('podman') {
+                sh 'podman version"'
+            }
+        }
+    }
+}
