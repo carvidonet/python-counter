@@ -1,8 +1,9 @@
-#!/usr/local/bin/python3
+#!/usr/bin/env python3
 
 import http.server
+import os
 
-counter = 0
+counter = int(os.getenv("PYTHON_COUNTER_START", 0))
 
 class handler(http.server.BaseHTTPRequestHandler):
     def do_GET(s):
