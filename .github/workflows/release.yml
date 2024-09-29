@@ -76,12 +76,3 @@ jobs:
           push: true
           tags: ghcr.io/${{ github.repository }}:${{needs.release.outputs.tag}}
           labels: ${{ steps.meta.outputs.labels }}
-          provenance: mode=max
-          sbom: true
-      - name: Attest
-        uses: actions/attest-build-provenance@v1
-        id: attest
-        with:
-          subject-name: ghcr.io/${{ github.repository }}:${{needs.release.outputs.tag}}
-          subject-digest: ${{ steps.push.outputs.digest }}
-          push-to-registry: true
